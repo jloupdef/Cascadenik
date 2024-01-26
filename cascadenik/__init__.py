@@ -10,7 +10,7 @@ __version__ = '2.6.6'
 
 from os import mkdir, chmod
 from os.path import isdir, realpath, expanduser, dirname, exists
-from urlparse import urlparse
+import urllib.parse
 
 # import mapnik
 try:
@@ -73,7 +73,7 @@ def load_map(map, src_file, output_dir, scale=1, cache_dir=None, datasources_cfg
           verbose:
             ...
     """
-    scheme, n, path, p, q, f = urlparse(src_file)
+    scheme, n, path, p, q, f = parse(src_file)
     
     if scheme in ('file', ''):
         assert exists(src_file), "We'd prefer an input file that exists to one that doesn't"
